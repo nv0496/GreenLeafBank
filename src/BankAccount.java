@@ -12,11 +12,8 @@ import java.util.List;
 //If the age or other validation rules are changed this class also has to be changed.
     //Example - if the validation age is changed from 18 to 21 changes have to be accommodated
 //If the deposit or withdrawal rules are changed  we need to change this class.
-// If the database is changed from MySQL to something else  this class has to be changeds.
-// If the interest rate or interest calculation is changed, this class has to be changed.
-public class BankAccount {
 
-    private int accountNumber;
+        //// job description: bankaccount should only manage money like deposits withdrawals and keep track of the balance
     private String name;
     private int age;
     private double balance;

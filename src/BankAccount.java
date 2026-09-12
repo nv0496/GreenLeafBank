@@ -10,10 +10,12 @@ import java.util.List;
  * Refactor this across by implementing the lab tasks onward.
  */
 //If the age or other validation rules are changed this class also has to be changed.
-    //Example - if the validation age is changed from 18 to 21 changes have to be accommodated
+//Example - if the validation age is changed from 18 to 21 changes have to be accommodated
 //If the deposit or withdrawal rules are changed  we need to change this class.
 
-        //// job description: bankaccount should only manage money like deposits withdrawals and keep track of the balance
+//// job description: bankaccount should only manage money like deposits withdrawals and keep track of the balance
+public class BankAccount {
+    private int accountNumber;
     private String name;
     private int age;
     private double balance;
@@ -69,12 +71,6 @@ import java.util.List;
         // Logging responsibility, baked directly into deposit()
         transactionLog.add("DEPOSIT: Rs. " + amount + " | New balance: " + balance);
 
-        // Notification responsibility, baked directly into deposit()
-        sendEmail(name, "Your deposit of Rs. " + amount + " was successful. New balance: " + balance);
-
-        // Persistence responsibility, baked directly into deposit()
-        saveToDatabase();
-
         return true;
     }
 
@@ -107,26 +103,18 @@ import java.util.List;
 
         transactionLog.add("WITHDRAW: Rs. " + amount + " | New balance: " + balance);
 
-        sendEmail(name, "Your withdrawal of Rs. " + amount + " was successful. New balance: " + balance);
-
-        saveToDatabase();
-
         return true;
     }
 
     public boolean closeAccount() {
         if (status.equals("Inactive")) return false;
         status = "Inactive";
-        sendEmail(name, "Your account has been closed.");
-        saveToDatabase();
         return true;
     }
 
     public boolean reopenAccount() {
         if (status.equals("Active")) return false;
         status = "Active";
-        sendEmail(name, "Your account has been reopened.");
-        saveToDatabase();
         return true;
     }
 
@@ -154,24 +142,6 @@ import java.util.List;
         } else {
             return 0.0;
         }
-    }
-
-    // ----------------------------------------------------
-    // "Persistence" — pretend database logic living inside the account
-    // ----------------------------------------------------
-
-    private void saveToDatabase() {
-        // Pretend this talks to MySQL. In reality just prints.
-        System.out.println("[DB] Saving account " + accountNumber + " to MySQL...");
-    }
-
-    // ----------------------------------------------------
-    // "Notification" — pretend email logic living inside the account
-    // ----------------------------------------------------
-
-    private void sendEmail(String recipient, String message) {
-        // Pretend this talks to an SMTP server. In reality just prints.
-        System.out.println("[EMAIL] To: " + recipient + " | " + message);
     }
 
     // ----------------------------------------------------
